@@ -16,6 +16,7 @@ use SilverStripe\Core\Config\Configurable;
 use SilverStripe\Core\Config\Config;
 use SilverStripe\Forms\FormField;
 use BadMethodCallException;
+use UncleCheese\DisplayLogic\Forms\Wrapper;
 
 class Criteria
 {
@@ -257,7 +258,7 @@ class Criteria
      */
     public function end()
     {
-        if ($this->parent) {
+        if ($this->parent && !($this->parent instanceof Wrapper)) {
             $this->parent->addCriterion($this);
             return $this->parent->end();
         }
